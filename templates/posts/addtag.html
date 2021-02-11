@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'posts/base.html' %}
+{% load crispy_forms_tags %}
+{% block style %}
+{% endblock %}
+{% block title %}
+<title>Home</title>
+{% endblock %}
+{% block body %}
+<div class="container my-2">    
+    <form aciton="/posts/addnew" method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" class="btn btn-primary mt-3" value="Submit">
+    </form>
+</div>
+{% endblock %}

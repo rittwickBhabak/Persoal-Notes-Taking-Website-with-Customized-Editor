@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'posts/base.html' %}
+{% block style %}
+{% endblock %}
+{% block title %}
+<title>Home</title>
+{% endblock %}
+{% block body %}
+<div class="container">
+  {% if heading %}
+  <h1 class="text-center">
+    {{heading|title}}
+  </h1>
+  {% endif %}
+    {% for post in posts %}
+    <div class="card my-3">
+        <div class="card-header">
+          {% for tag in post.tags %}
+          <span class="float-end"><a href="/posts/category/{{tag.tag}}">#{{tag.tag}}|</a></span>
+          {% endfor %}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{post.post.title}}</h5>
+          <p class="card-text clearfix"><span class="float-start">Created At: {{post.post.created_at}}</span> <span class="float-end">Updated At: {{post.post.updated_at}}</span></p>
+          <a href="/posts/details/{{post.post.pk}}" class="btn btn-primary">Read</a>
+        </div>
+      </div>
+      {% empty %}
+      <h3>No Posts Found</h3>
+    {% endfor %}
+</div>
+{% endblock %}
